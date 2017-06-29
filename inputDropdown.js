@@ -6,7 +6,7 @@ angular.module('inputDropdown', []).directive('inputDropdown', [function() {
            'placeholder="{{inputPlaceholder}}"' +
            'autocomplete="off"' +
            'ng-model="inputValue"' +
-           'class="{{inputClassName}}"' + 
+           'class="{{inputClassName}}"' +
            'ng-required="inputRequired"' +
            'ng-change="inputChange()"' +
            'ng-focus="inputFocus()"' +
@@ -89,7 +89,8 @@ angular.module('inputDropdown', []).directive('inputDropdown', [function() {
           }
           else {
             // Uncomment to clear input field when editing it after making a selection
-            // scope.inputValue = '';
+            scope.inputValue = '';
+            scope.inputChange(true);
           }
         }
       });
@@ -104,9 +105,11 @@ angular.module('inputDropdown', []).directive('inputDropdown', [function() {
         scope.activeItemIndex = itemIndex;
       };
 
-      scope.inputChange = function() {
+      scope.inputChange = function(skipDropdownShow) {
         scope.selectedItem = null;
-        showDropdown();
+        if (!skipDropdownShow) {
+            showDropdown();
+        }
 
         if (!scope.inputValue) {
           scope.dropdownItems = scope.defaultDropdownItems || [];
@@ -208,7 +211,7 @@ angular.module('inputDropdown', []).directive('inputDropdown', [function() {
             }
             break;
           case 9: // tab
-            if (scope.dropdownVisible && scope.dropdownItems && scope.dropdownItems.length > 0 && scope.activeItemIndex !== -1) {              
+            if (scope.dropdownVisible && scope.dropdownItems && scope.dropdownItems.length > 0 && scope.activeItemIndex !== -1) {
               scope.$apply(selectActiveItem);
             }
             break;
