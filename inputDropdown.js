@@ -8,6 +8,7 @@ angular.module('inputDropdown', []).directive('inputDropdown', [function() {
            'ng-model="inputValue"' +
            'class="{{inputClassName}}"' +
            'ng-required="inputRequired"' +
+           'ng-required="inputDisabled"' +
            'ng-change="inputChange()"' +
            'ng-focus="inputFocus()"' +
            'ng-blur="inputBlur($event)"' +
@@ -32,6 +33,7 @@ angular.module('inputDropdown', []).directive('inputDropdown', [function() {
       selectedItem: '=',
       allowCustomInput: '=',
       inputRequired: '=',
+      inputDisabled: '=',
       inputName: '@',
       inputClassName: '@',
       inputPlaceholder: '@',
@@ -45,6 +47,9 @@ angular.module('inputDropdown', []).directive('inputDropdown', [function() {
       };
       this.isRequired = function() {
         return $scope.inputRequired;
+      };
+      this.isDisabled = function() {
+        return $scope.inputDisabled;
       };
       this.customInputAllowed = function() {
         return $scope.allowCustomInput;
