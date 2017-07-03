@@ -8,7 +8,7 @@ angular.module('inputDropdown', []).directive('inputDropdown', [function() {
            'ng-model="inputValue"' +
            'class="{{inputClassName}}"' +
            'ng-required="inputRequired"' +
-           'ng-required="inputDisabled"' +
+           'ng-disabled="inputDisabled"' +
            'ng-change="inputChange()"' +
            'ng-focus="inputFocus()"' +
            'ng-blur="inputBlur($event)"' +
